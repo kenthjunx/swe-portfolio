@@ -1,0 +1,96 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"main.h": "c",
+			"stm32f4xx_hal.h": "c",
+			"stm32f4xx_hal_conf.h": "c",
+			"usart.h": "c",
+			"string.h": "c",
+			"freertos.h": "c",
+			"stm32f4xx_hal_rtc.h": "c",
+			"hd44780.h": "c",
+			"i2c.h": "c",
+			"rtc.h": "c",
+			"app_rtc.h": "c",
+			"app_lcd.h": "c",
+			"stm32f4xx_hal_def.h": "c",
+			"stm32f4xx_hal_rtc_ex.h": "c",
+			"stm32f4xx_hal_gpio.h": "c",
+			"gpio.h": "c",
+			"stm32f4xx_hal_rcc.h": "c",
+			"stm32f4xx.h": "c",
+			"buzzer.h": "c"
+		},
+		"editor.rulers": [120],
+		"cortex-debug.variableUseNaturalFormat": true
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "Build",
+				"command": "make",
+				"type": "shell",
+				"args": ["-f", "Makefile", "all"],
+				"options": {"cwd": "${workspaceFolder}"},
+				"problemMatcher": ["$gcc"],
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				},
+			},
+			{
+				"label": "Clean",
+				"command": "make",
+				"type": "shell",
+				"args": ["-f", "Makefile", "clean"],
+				"problemMatcher": ["$gcc"],
+				"group": "build"
+			},
+			{
+				"label": "Clean and Build",
+				"dependsOn":["Clean", "Build"],
+				"dependsOrder": "sequence",
+				"group": "build"
+			},
+
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "OpenOCD Debug",
+				"request": "launch",
+				"type": "cortex-debug",
+				"servertype": "openocd",
+				"device": "STM32F411CEU",
+				"cwd": "${workspaceFolder}",
+				// "preLaunchTask": "Build",
+				"executable": "build/${workspaceFolderBasename}.elf",
+				"configFiles": [
+					"interface/stlink.cfg",
+					"target/stm32f4x.cfg"
+				],
+				"svdPath": "STM32F411.svd"
+			},
+			{
+				"name": "JLink Debug",
+				"request": "launch",
+				"type": "cortex-debug",
+				"servertype": "jlink",
+				"interface": "swd",
+				"device": "STM32F411CEU",
+				"cwd": "${workspaceFolder}",
+				"preLaunchTask": "Build",
+				"executable": "build/${workspaceFolderBasename}.elf",
+				"svdPath": "STM32F411.svd"
+			}
+		]
+	}
+}

@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cspy",
+            "request": "launch",
+            "name": "RobotCar.Debug",
+            "target": "arm",
+            "program": "${workspaceFolder}\\Debug\\Exe\\RobotCar.out",
+            "driver": "ST-LINK",
+            "stopOnSymbol": "main",
+            "workbenchPath": "${command:iar-config.toolchain}",
+            "projectPath": "${workspaceFolder}\\RobotCar.ewp",
+            "projectConfiguration": "Debug",
+            "driverOptions": [
+                "--crun=disabled",
+                "--endian=little",
+                "--cpu=Cortex-M3",
+                "--fpu=None",
+                "-p",
+                "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm\\CONFIG\\debugger\\ST\\STM32F103C8.ddf",
+                "--semihosting",
+                "--device=STM32F103C8",
+                "--drv_interface=SWD",
+                "--stlink_reset_strategy=0,0",
+                "--drv_swo_clock_setup=72000000,1,2000000",
+                "--drv_catch_exceptions=0x000",
+                "--drv_debug_ap=0"
+            ],
+            "download": {
+                "flashLoader": "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm/config/flashloader/ST/FlashSTM32F10xx8.board",
+                "deviceMacros": [
+                    "C:\\Program Files\\IAR Systems\\Embedded Workbench 9.1\\arm/config/debugger/ST/STM32F1xx.dmac"
+                ]
+            },
+            "preLaunchTask": "clean and build"
+        }
+    ]
+}

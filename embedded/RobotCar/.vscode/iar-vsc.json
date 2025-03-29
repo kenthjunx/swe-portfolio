@@ -1,0 +1,5 @@
+{
+    "ewp": "${workspaceFolder}\\RobotCar.ewp",
+    "configuration": "Debug",
+    "toolchain": "C:\\\\Program Files\\\\IAR Systems\\\\Embedded Workbench 9.1"
+}
